@@ -1,3 +1,7 @@
 .main {
   min-height: 75vh;
 }
+
+.card-color {
+  background-image: linear-gradient(to right, #96b7ffb4, #7096fed0);
+}
