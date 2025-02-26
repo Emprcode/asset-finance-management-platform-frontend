@@ -12,12 +12,12 @@ export const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto gap-3'>
-            <Link className='nav-link' to='/home'>
-              Home
-            </Link>
+          <Nav className='ms-auto gap-3 h5'>
             <Link className='nav-link' to='/link'>
               Add Application
+            </Link>
+            <Link className='nav-link' to='/home'>
+              Profile
             </Link>
           </Nav>
         </Navbar.Collapse>
