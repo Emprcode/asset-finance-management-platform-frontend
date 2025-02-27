@@ -248,29 +248,3 @@ const AddApplication = () => {
 };
 
 export default AddApplication;
-
-// const mongoose = require("mongoose");
-
-// const itemSchema = new mongoose.Schema({
-//   description: { type: String, required: true },
-//   value: { type: Number, required: true },
-// });
-
-// const formSchema = new mongoose.Schema(
-//   {
-//     legalName: { type: String, required: true },
-//     address: { type: String, required: true },
-//     phoneNumber: { type: String, required: true },
-
-//     assets: [itemSchema], // Array of assets
-//     income: [itemSchema], // Array of income
-//     expenses: [itemSchema], // Array of expenses
-//     liabilities: [itemSchema], // Array of liabilities
-//   },
-//   { timestamps: true }
-// ); // Automatically add createdAt and updatedAt fields
-
-// // Create a model from the schema
-// const FormData = mongoose.model("FormData", formSchema);
-
-// module.exports = FormData;
