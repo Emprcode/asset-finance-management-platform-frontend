@@ -1,17 +1,13 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FormComponents } from "../components/formComponents/userForm";
-
-interface FormData {
-  name?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
+import { User, userFormData } from "./types";
+import { toast } from "react-toastify";
+import { postUser } from "../components/helper/axiosHelper";
 
 const Register = () => {
-  const [formData, setFormData] = useState<FormData>({});
+  const [userData, setUserData] = useState<userFormData>({});
 
   const inputs = [
     {
@@ -21,6 +17,7 @@ const Register = () => {
       placeholder: "Jack",
       required: true,
     },
+
     {
       name: "email",
       type: "email",
@@ -46,16 +43,26 @@ const Register = () => {
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setUserData({
+      ...userData,
       [name]: value,
     });
   };
 
-  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { confirmPassword, ...rest } = formData;
-    console.log(rest);
+    const { confirmPassword, ...rest } = userData;
+    if (confirmPassword !== rest.password) {
+      toast.error("Password do not match!");
+      return;
+    }
+    const user: User = rest as User;
+    const { status, message } = await postUser(user);
+    if (status === "success") {
+      toast.success(message);
+    } else {
+      toast.error(message);
+    }
   };
   return (
     <div className='bg-color'>
