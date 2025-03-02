@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { ApplicationCardProps } from "../../pages/types";
+import { ApplicationCardProps } from "../../types";
 import { EditApplication } from "../../pages/EditApplication";
 import { Col, Container, Row } from "react-bootstrap";
 

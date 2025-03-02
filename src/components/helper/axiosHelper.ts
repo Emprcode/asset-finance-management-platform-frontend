@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApplicationFormData, User, ApiResponse } from "../../pages/types";
+import { ApplicationFormData, User, ApiResponse } from "../../types";
 
 const apiURL = import.meta.env.VITE_API_URL;
 

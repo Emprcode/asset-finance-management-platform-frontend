@@ -6,7 +6,7 @@ import AddApplications from "./pages/AddApplications";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-bootstrap";
 import Login from "./pages/Login";
-import { User } from "./pages/types";
+import { User } from "./types";
 import { useEffect, useState } from "react";
 
 function App() {

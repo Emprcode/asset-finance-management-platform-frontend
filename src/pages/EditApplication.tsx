@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Form, FormControl, InputGroup, ListGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { ApplicationFormData, EditApplicationProps } from "./types";
+import { ApplicationFormData, EditApplicationProps } from "../types";
 import { updateApplication } from "../components/helper/axiosHelper";
 import { toast } from "react-toastify";
 

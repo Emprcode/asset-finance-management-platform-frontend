@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Row, Col, Container, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FormComponents } from "../components/formComponents/userForm";
-import { User, userFormData } from "./types";
+import { User, userFormData } from "../types";
 import { toast } from "react-toastify";
 import { postUser } from "../components/helper/axiosHelper";
 
