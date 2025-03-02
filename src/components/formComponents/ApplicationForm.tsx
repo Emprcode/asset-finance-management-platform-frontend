@@ -1,17 +1,8 @@
-import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Button, Row, Form, ListGroup, InputGroup, FormControl, Container } from "react-bootstrap";
+import { ApplicationFormData, ApplicationFormProps } from "../../pages/types";
 
-interface FormData {
-  legalName: string;
-  address: string;
-  phoneNumber: string;
-  assets: { description: string; value: string }[];
-  income: { description: string; value: string }[];
-  expenses: { description: string; value: string }[];
-  liabilities: { description: string; value: string }[];
-}
-
-const initialState: FormData = {
+const initialState: ApplicationFormData = {
   legalName: "",
   address: "",
   phoneNumber: "",
@@ -21,18 +12,12 @@ const initialState: FormData = {
   liabilities: [{ description: "", value: "" }],
 };
 
-interface ApplicationFormProps {
-  initialData?: FormData;
-  onSubmit: (data: FormData) => void;
-  buttonValue: string;
-}
-
-export const ApplicationForm: FC<ApplicationFormProps> = ({
+export const ApplicationForm: React.FC<ApplicationFormProps> = ({
   initialData = initialState,
   onSubmit,
   buttonValue,
 }) => {
-  const [formData, setFormData] = useState<FormData>(initialData);
+  const [formData, setFormData] = useState<ApplicationFormData>(initialData);
 
   const handleFieldChange = (
     e: ChangeEvent<HTMLInputElement>,
