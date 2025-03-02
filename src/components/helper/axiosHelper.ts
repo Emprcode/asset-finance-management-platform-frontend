@@ -95,3 +95,29 @@ export const getApplications = async () => {
     };
   }
 };
+
+export const deleteApplication = async (_id: string) => {
+  try {
+    const userId = getUserId();
+    if (!userId) {
+      return {
+        status: "error",
+        message: "You need to log in first!",
+      };
+    }
+    console.log(_id);
+    const { data } = await axios.delete(applicationAPI, {
+      data: { _id },
+      headers: {
+        Authorization: userId,
+      },
+    });
+    console.log(data);
+    return data;
+  } catch (error: any) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

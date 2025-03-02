@@ -3,7 +3,9 @@ import Card from "react-bootstrap/Card";
 import { ApplicationCardProps } from "../../pages/types";
 
 export const ApplicationCard = (props: ApplicationCardProps) => {
-  const { appNumber } = props;
+  const { appNumber, handleOnDelete, _id } = props;
+
+  console.log(props);
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
@@ -12,7 +14,9 @@ export const ApplicationCard = (props: ApplicationCardProps) => {
           <Button variant='warning' className='me-3'>
             Edit
           </Button>
-          <Button variant='danger'>Delete</Button>
+          <Button variant='danger' onClick={() => handleOnDelete(_id)}>
+            Delete
+          </Button>
         </div>
       </Card.Body>
     </Card>

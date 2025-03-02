@@ -1,14 +1,14 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { MainLayout } from "../components/layout/MainLayout";
 import { Link } from "react-router-dom";
-import { ApplicationFormData, UserProfileProps } from "./types";
+import { ApplicationCardProps, UserProfileProps } from "./types";
 import { ApplicationCard } from "../components/card/ApplicationCard";
 import { useEffect, useState } from "react";
-import { getApplications } from "../components/helper/axiosHelper";
+import { deleteApplication, getApplications } from "../components/helper/axiosHelper";
 
 const Dashboard = ({ user }: UserProfileProps) => {
   console.log(user);
-  const [applications, setApplications] = useState<ApplicationFormData[]>([]);
+  const [applications, setApplications] = useState<ApplicationCardProps[]>([]);
 
   useEffect(() => {
     fetchApplications();
@@ -21,6 +21,15 @@ const Dashboard = ({ user }: UserProfileProps) => {
   };
 
   console.log(applications);
+
+  const handleOnDelete = async (_id: string) => {
+    if (!window.confirm("Are you sure you want to delete?")) {
+      return;
+    }
+    const { status, message } = await deleteApplication(_id);
+    console.log(status, message);
+    status === "success" && fetchApplications();
+  };
   return (
     <MainLayout>
       <Container>
@@ -74,7 +83,12 @@ const Dashboard = ({ user }: UserProfileProps) => {
           </Row>
           <Row className='gap-3 p-3 '>
             {applications?.map((application, i) => (
-              <ApplicationCard key={i} {...application} appNumber={i + 1} />
+              <ApplicationCard
+                key={application._id}
+                {...application}
+                appNumber={i + 1}
+                handleOnDelete={handleOnDelete}
+              />
             ))}
           </Row>
         </div>
