@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { MainLayout } from "../components/layout/MainLayout";
-import { ApplicationCardProps, UserProfileProps } from "./types";
+import { ApplicationCardProps, UserProfileProps } from "../types";
 import { ApplicationCard } from "../components/card/ApplicationCard";
 import { useEffect, useState } from "react";
 import { deleteApplication, getApplications } from "../components/helper/axiosHelper";

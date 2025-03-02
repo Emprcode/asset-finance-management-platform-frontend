@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Button, Row, Form, ListGroup, InputGroup, FormControl, Container } from "react-bootstrap";
-import { ApplicationFormData, ApplicationFormProps } from "../../pages/types";
+import { ApplicationFormData, ApplicationFormProps } from "../../types";
 
 const initialState: ApplicationFormData = {
   legalName: "",

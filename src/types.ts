@@ -43,17 +43,3 @@ export interface ApplicationCardProps extends ApplicationFormData {
 export interface EditApplicationProps {
   application: ApplicationFormData;
 }
-
-// export interface ApplicationFormProps {
-//   formData: FormData;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-//   onFieldChange: (
-//     e: React.ChangeEvent<HTMLInputElement>,
-//     index: number,
-//     type: keyof FormData
-//   ) => void;
-//   onAddField: (type: keyof FormData) => void;
-//   onRemoveField: (index: number, type: keyof FormData) => void;
-//   onSubmit: (e: React.FormEvent) => void;
-//   buttonValue: string;
-// }
