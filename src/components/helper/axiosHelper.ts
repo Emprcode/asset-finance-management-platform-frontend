@@ -68,3 +68,30 @@ export const postApplication = async (transObj: ApplicationFormData): Promise<Us
     };
   }
 };
+
+//get Transaction
+export const getApplications = async () => {
+  try {
+    const userId = getUserId();
+    // console.log(userId);
+    if (!userId) {
+      return {
+        status: "error",
+        message: "You need to log in first!",
+      };
+    }
+
+    const { data } = await axios.get(applicationAPI, {
+      headers: {
+        Authorization: userId,
+      },
+    });
+    // console.log(data);
+    return data;
+  } catch (error: any) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};

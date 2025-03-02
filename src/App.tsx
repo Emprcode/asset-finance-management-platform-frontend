@@ -6,8 +6,23 @@ import AddApplications from "./pages/AddApplications";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-bootstrap";
 import Login from "./pages/Login";
+import { ApplicationFormData } from "./pages/types";
+import { useEffect, useState } from "react";
+import { getApplications } from "./components/helper/axiosHelper";
 
 function App() {
+  const [applications, setApplications] = useState<ApplicationFormData[]>([]);
+
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+
+  const fetchApplications = async () => {
+    const { status, result } = await getApplications();
+
+    status === "success" && setApplications(result);
+  };
+  console.log(applications);
   return (
     <div>
       <BrowserRouter>
