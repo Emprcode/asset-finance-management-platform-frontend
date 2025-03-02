@@ -16,7 +16,7 @@ export const Header = () => {
             <Link className='nav-link' to='/add-application'>
               Add Application
             </Link>
-            <Link className='nav-link' to='/home'>
+            <Link className='nav-link' to='#'>
               Profile
             </Link>
           </Nav>
