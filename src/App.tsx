@@ -6,31 +6,33 @@ import AddApplications from "./pages/AddApplications";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-bootstrap";
 import Login from "./pages/Login";
-import { ApplicationFormData } from "./pages/types";
+import { User } from "./pages/types";
 import { useEffect, useState } from "react";
-import { getApplications } from "./components/helper/axiosHelper";
 
 function App() {
-  const [applications, setApplications] = useState<ApplicationFormData[]>([]);
+  const [user, setuser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetchApplications();
+    getUser();
   }, []);
 
-  const fetchApplications = async () => {
-    const { status, result } = await getApplications();
-
-    status === "success" && setApplications(result);
+  const getUser = () => {
+    const user = sessionStorage.getItem("user");
+    if (user) {
+      const userObj = JSON.parse(user);
+      setuser(userObj);
+    }
   };
-  console.log(applications);
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard' element={<Dashboard user={user} />} />
           <Route path='/add-application' element={<AddApplications />} />
+          {/* <Route path='/:_id' element={<EditApplication />} /> */}
         </Routes>
       </BrowserRouter>
       <ToastContainer />

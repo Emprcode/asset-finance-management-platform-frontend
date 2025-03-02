@@ -39,11 +39,8 @@ const Login = () => {
   const handleOnSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(userData);
-
     const { status, message, result } = await loginUser(userData);
 
-    console.log(result);
     if (status === "success" && result?._id) {
       toast.success(message);
       sessionStorage.setItem("user", JSON.stringify(result));

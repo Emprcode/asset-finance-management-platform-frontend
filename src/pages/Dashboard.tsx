@@ -1,7 +1,26 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { MainLayout } from "../components/layout/MainLayout";
 import { Link } from "react-router-dom";
-const Dashboard = () => {
+import { ApplicationFormData, UserProfileProps } from "./types";
+import { ApplicationCard } from "../components/card/ApplicationCard";
+import { useEffect, useState } from "react";
+import { getApplications } from "../components/helper/axiosHelper";
+
+const Dashboard = ({ user }: UserProfileProps) => {
+  console.log(user);
+  const [applications, setApplications] = useState<ApplicationFormData[]>([]);
+
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+
+  const fetchApplications = async () => {
+    const { status, result } = await getApplications();
+
+    status === "success" && setApplications(result);
+  };
+
+  console.log(applications);
   return (
     <MainLayout>
       <Container>
@@ -9,7 +28,7 @@ const Dashboard = () => {
           <div className='d-flex'>
             <div className='mx-3'>
               <h4 className='text-center'>Welcome!</h4>
-              <h2 className='fw-bold'> John</h2>
+              <h2 className='fw-bold'> {user?.name}</h2>
             </div>
           </div>
         </Row>
@@ -19,7 +38,7 @@ const Dashboard = () => {
               <div className='text-center'>
                 <p className='p-2 h5'>Total Applications</p>
 
-                <h2 className='fw-bold'> 0</h2>
+                <h2 className='fw-bold'> {applications?.length}</h2>
               </div>
             </div>
             <Row className='mt-5'>
@@ -53,7 +72,11 @@ const Dashboard = () => {
               </Link>
             </Col>
           </Row>
-          <Row className='gap-3 p-3 '>{/* application card */}</Row>
+          <Row className='gap-3 p-3 '>
+            {applications?.map((application, i) => (
+              <ApplicationCard key={i} {...application} appNumber={i + 1} />
+            ))}
+          </Row>
         </div>
       </Container>
     </MainLayout>
