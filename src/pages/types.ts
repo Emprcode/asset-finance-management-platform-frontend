@@ -7,10 +7,14 @@ export interface userFormData {
 
 export type User = Omit<userFormData, "confirmPassword">;
 
-export interface UserApiResponse {
+export interface ApiResponse {
   status: string;
   message: string;
   result?: any;
+}
+
+export interface UserProfileProps {
+  user: User | null;
 }
 
 export interface ApplicationFormData {
@@ -27,6 +31,12 @@ export interface ApplicationFormProps {
   initialData?: ApplicationFormData;
   onSubmit: (data: ApplicationFormData) => void;
   buttonValue: string;
+}
+
+export interface ApplicationCardProps extends ApplicationFormData {
+  appNumber: number;
+  handleOnDelete: (_id: string) => void;
+  _id: string;
 }
 
 // export interface ApplicationFormProps {

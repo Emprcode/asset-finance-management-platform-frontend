@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApplicationFormData, User, UserApiResponse } from "../../pages/types";
+import { ApplicationFormData, User, ApiResponse } from "../../pages/types";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -9,9 +9,9 @@ const applicationAPI = apiURL + "/application";
 
 //register user
 
-export const postUser = async (userObj: User): Promise<UserApiResponse> => {
+export const postUser = async (userObj: User): Promise<ApiResponse> => {
   try {
-    const { data } = await axios.post<UserApiResponse>(userAPI, userObj);
+    const { data } = await axios.post<ApiResponse>(userAPI, userObj);
     return data;
   } catch (error: any) {
     return {
@@ -23,9 +23,9 @@ export const postUser = async (userObj: User): Promise<UserApiResponse> => {
 
 //register user
 
-export const loginUser = async (userObj: User): Promise<UserApiResponse> => {
+export const loginUser = async (userObj: User): Promise<ApiResponse> => {
   try {
-    const { data } = await axios.post<UserApiResponse>(userAPI + "/login", userObj);
+    const { data } = await axios.post<ApiResponse>(userAPI + "/login", userObj);
     return data;
   } catch (error: any) {
     return {
@@ -44,7 +44,7 @@ const getUserId = () => {
   return userObj?._id || null;
 };
 //add application
-export const postApplication = async (transObj: ApplicationFormData): Promise<UserApiResponse> => {
+export const postApplication = async (transObj: ApplicationFormData): Promise<ApiResponse> => {
   try {
     const userId = getUserId();
     if (!userId) {
@@ -54,7 +54,7 @@ export const postApplication = async (transObj: ApplicationFormData): Promise<Us
       };
     }
 
-    const { data } = await axios.post<UserApiResponse>(applicationAPI, transObj, {
+    const { data } = await axios.post<ApiResponse>(applicationAPI, transObj, {
       headers: {
         Authorization: userId,
       },
@@ -87,6 +87,32 @@ export const getApplications = async () => {
       },
     });
     // console.log(data);
+    return data;
+  } catch (error: any) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const deleteApplication = async (_id: string) => {
+  try {
+    const userId = getUserId();
+    if (!userId) {
+      return {
+        status: "error",
+        message: "You need to log in first!",
+      };
+    }
+    console.log(_id);
+    const { data } = await axios.delete(applicationAPI, {
+      data: { _id },
+      headers: {
+        Authorization: userId,
+      },
+    });
+    console.log(data);
     return data;
   } catch (error: any) {
     return {
