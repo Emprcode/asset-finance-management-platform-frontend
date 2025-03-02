@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { Button, Row, Form, ListGroup, InputGroup, FormControl, Container } from "react-bootstrap";
 import { ApplicationFormData, ApplicationFormProps } from "../../pages/types";
 
@@ -12,7 +12,7 @@ const initialState: ApplicationFormData = {
   liabilities: [{ description: "", value: "" }],
 };
 
-export const ApplicationForm: React.FC<ApplicationFormProps> = ({
+export const ApplicationForm: FC<ApplicationFormProps> = ({
   initialData = initialState,
   onSubmit,
   buttonValue,

@@ -44,7 +44,9 @@ const getUserId = () => {
   return userObj?._id || null;
 };
 //add application
-export const postApplication = async (transObj: ApplicationFormData): Promise<ApiResponse> => {
+export const postApplication = async (
+  applicationObj: ApplicationFormData
+): Promise<ApiResponse> => {
   try {
     const userId = getUserId();
     if (!userId) {
@@ -54,7 +56,7 @@ export const postApplication = async (transObj: ApplicationFormData): Promise<Ap
       };
     }
 
-    const { data } = await axios.post<ApiResponse>(applicationAPI, transObj, {
+    const { data } = await axios.post<ApiResponse>(applicationAPI, applicationObj, {
       headers: {
         Authorization: userId,
       },
@@ -87,6 +89,32 @@ export const getApplications = async () => {
       },
     });
     // console.log(data);
+    return data;
+  } catch (error: any) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+//update application
+export const updateApplication = async (updateObj: ApplicationFormData): Promise<ApiResponse> => {
+  try {
+    const userId = getUserId();
+    if (!userId) {
+      return {
+        status: "error",
+        message: "You need to log in first!",
+      };
+    }
+
+    const { data } = await axios.put<ApiResponse>(applicationAPI, updateObj, {
+      headers: {
+        Authorization: userId,
+      },
+    });
+    console.log(data);
     return data;
   } catch (error: any) {
     return {

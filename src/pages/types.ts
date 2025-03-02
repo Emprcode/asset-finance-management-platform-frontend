@@ -37,6 +37,11 @@ export interface ApplicationCardProps extends ApplicationFormData {
   appNumber: number;
   handleOnDelete: (_id: string) => void;
   _id: string;
+  application: object;
+}
+
+export interface EditApplicationProps {
+  application: ApplicationFormData;
 }
 
 // export interface ApplicationFormProps {

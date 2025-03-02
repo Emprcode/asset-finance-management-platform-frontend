@@ -32,7 +32,6 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard user={user} />} />
           <Route path='/add-application' element={<AddApplications />} />
-          {/* <Route path='/:_id' element={<EditApplication />} /> */}
         </Routes>
       </BrowserRouter>
       <ToastContainer />
