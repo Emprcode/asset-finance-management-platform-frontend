@@ -4,8 +4,7 @@
 
 Built with Vite + React to handle the user interface, Asset Finance Management Platform specializes
 in providing fnancing solutions for businesses in the asset nance industry. It is styled with
-BootStrap for visually apealing UI - The primary goal is to display my skills in realtime enviroment
-that creates a lasting impact.
+BootStrap for visually apealing UI.
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
