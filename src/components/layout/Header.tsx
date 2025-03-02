@@ -13,7 +13,7 @@ export const Header = () => {
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ms-auto gap-3 h5'>
-            <Link className='nav-link' to='/link'>
+            <Link className='nav-link' to='/add-application'>
               Add Application
             </Link>
             <Link className='nav-link' to='/home'>
