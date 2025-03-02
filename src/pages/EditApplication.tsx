@@ -59,7 +59,7 @@ export const EditApplication: FC<EditApplicationProps> = ({ application }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Issue update</Modal.Title>
+          <Modal.Title>Update Application</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className='d-flex justify-content-center'>
