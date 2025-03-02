@@ -1,6 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { MainLayout } from "../components/layout/MainLayout";
-import { Link } from "react-router-dom";
 import { ApplicationCardProps, UserProfileProps } from "./types";
 import { ApplicationCard } from "../components/card/ApplicationCard";
 import { useEffect, useState } from "react";
@@ -75,16 +74,12 @@ const Dashboard = ({ user }: UserProfileProps) => {
             <Col>
               <h2 className='fw-bold'>Applications</h2>
             </Col>
-            <Col>
-              <Link to='/transactions' className='d-flex justify-content-end fw-bold nav-link'>
-                View All
-              </Link>
-            </Col>
+            <Col className='d-flex justify-content-end fw-bold nav-link'>View All</Col>
           </Row>
           <Row className='gap-3 p-3 '>
             {applications?.map((application, i) => (
               <ApplicationCard
-                key={application._id}
+                key={i}
                 {...application}
                 appNumber={i + 1}
                 handleOnDelete={handleOnDelete}
