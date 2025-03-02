@@ -5,10 +5,10 @@ export interface userFormData {
   confirmPassword?: string;
 }
 
-export type User = Omit<FormData, "confirmPassword">;
+export type User = Omit<userFormData, "confirmPassword">;
 
 export interface UserApiResponse {
   status: string;
   message: string;
-  data?: any;
+  result?: any;
 }
