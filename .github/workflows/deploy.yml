@@ -1,34 +1,41 @@
-name: Deploy to aws s3
+name: Deploy Vite App to AWS S3
 
 on:
   push:
     branches:
       - main
+
 env:
   VITE_API_URL: ${{ vars.VITE_API_URL }}
 
 jobs:
-  Deploy:
+  deploy:
+    name: Build and Deploy to S3
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build static file
-        run: npm run dist
+      - name: Build Vite app
+        run: npm run build
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
         with:
-          aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ vars.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-2
-
-      - name: Deploy an app to S3 bucket
-        run: aws s3 cp $GITHUB_WORKSPACE/build s3://${{ vars.AWS_S3_BUCKET }} --recursive
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ vars.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-southeast-2
+          SOURCE_DIR: dist
